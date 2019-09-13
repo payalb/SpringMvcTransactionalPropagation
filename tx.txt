@@ -1,0 +1,37 @@
+Transaction: ACID Property
+
+Atomocity:either the entire sequence of operations is successful or unsuccessfu Like 1 unit of operation
+Consistency:Once transaction is complete, system should be put back into the state that is properly defined. None of the database constraint violated.
+=> Earlier money was A+B => 2000 + 3000. After withdraw: 1500+ 3500. Sum should be same. 
+Isolation: Each transaction should be isolated from others to prevent data corruption if happening in parallel
+Durability:Once a transaction has completed, the results of this transaction have to be made permanent and cannot be erased from the database due to system failure
+
+When one write, other reads: (Hibernate prevents these due to dirty checking, session caching)
+-	Dirty Read
+-   Non repeatable read
+-   Phantom Read
+
+-When multiple writes:
+	- lost update/ write conflict (optimistic locking/ pessimistic locking)
+
+Spring transaction
+
+-Tx managers
+	-PlatformTransactionManager -> jdbc
+	- JpaTransactionManager -> jpa
+	- HibernateTransactionManager-hibernate
+	- JtaTransactionManager: tx across resources: db+ jms
+	- ChainedTransactionManager -> Chaining ur tx across dbs
+	
+	
+	-Propagation
+		Required, Supports,Mandatory,Requires_New,Not_Supported,Never,Nested
+		
+	-Isolation
+		-Read_committed, Read_Uncommitted, Repeatable_Read, serializable
+	
+	-ReadOnly
+	
+	-RollbackFor
+	
+Distributed Transactions (2 phase commit)/ Eventual Consistency
